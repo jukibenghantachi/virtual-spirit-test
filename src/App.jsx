@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getData } from './redux/actions';
+import { getData, postData } from './redux/actions';
 import CardList from './components/CardList';
 import CardPost from './components/CardPost';
 
@@ -9,7 +9,7 @@ export default function App() {
   const state = useSelector((state) => state.reducers);
   const [forms, setForms] = useState({
     title: '',
-    description: '',
+    body: '',
     userId: 1,
   });
 
@@ -20,7 +20,7 @@ export default function App() {
   };
 
   const onSubmitClick = () => {
-    if (forms.title === '' || forms.description === '') {
+    if (forms.title === '' || forms.body === '') {
       return alert('Please fill the forms!');
     }
     dispatch(postData({ body: forms }));

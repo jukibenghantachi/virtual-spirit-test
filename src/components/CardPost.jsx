@@ -17,11 +17,11 @@ export default function CardPost({ forms, onSubmitChange, onSubmitClick }) {
         <Form.Group className="mb-3" controlId="Description">
           <Form.Label>Description</Form.Label>
           <Form.Control
-            name="description"
+            name="body"
             as="textarea"
             placeholder="React Redux is state management."
             rows={3}
-            value={forms.description}
+            value={forms.body}
             onChange={onSubmitChange}
           />
         </Form.Group>
