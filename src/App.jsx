@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getData, postData } from './redux/actions';
+import { deleteData, getData, postData } from './redux/actions';
 import CardList from './components/CardList';
 import CardPost from './components/CardPost';
 
@@ -26,9 +26,16 @@ export default function App() {
     dispatch(postData({ body: forms }));
   };
 
+  const onDeleteClick = (e) => {
+    const id = parseInt(e.target.id);
+    dispatch(deleteData({ id }));
+  };
+
   useEffect(() => {
     dispatch(getData());
   }, [dispatch]);
+
+  console.log(state);
 
   return (
     <div>
@@ -45,6 +52,7 @@ export default function App() {
                 id={items.id}
                 title={items.title}
                 body={items.body}
+                onDeleteClick={onDeleteClick}
               />
             ))
           : null}

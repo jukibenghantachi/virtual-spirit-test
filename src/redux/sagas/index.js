@@ -1,5 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import {
+  DELETE_DATA_FETCH,
+  DELETE_DATA_SUCCESS,
   GET_DATA_FETCH,
   GET_DATA_SUCCESS,
   POST_DATA_FETCH,
@@ -22,6 +24,13 @@ function post(body) {
   }).then((res) => res.json());
 }
 
+function deleted(id) {
+  fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    method: 'DELETE',
+  });
+  return id;
+}
+
 function* requestData() {
   for (let id = 1; id <= 5; id++) {
     const data = yield call(request, id);
@@ -34,9 +43,15 @@ function* postData({ body }) {
   yield put({ type: POST_DATA_SUCCESS, data });
 }
 
+function* deleteData({ id }) {
+  const data = yield call(deleted, id);
+  yield put({ type: DELETE_DATA_SUCCESS, data });
+}
+
 function* sagas() {
   yield takeEvery(GET_DATA_FETCH, requestData);
   yield takeEvery(POST_DATA_FETCH, postData);
+  yield takeEvery(DELETE_DATA_FETCH, deleteData);
 }
 
 export default sagas;

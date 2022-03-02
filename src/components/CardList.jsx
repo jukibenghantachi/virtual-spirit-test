@@ -1,6 +1,6 @@
 import { Button, Card } from 'react-bootstrap';
 
-export default function CardList({ id, title, body }) {
+export default function CardList({ id, title, body, onDeleteClick }) {
   return (
     <Card style={{ width: '18rem' }} className="m-3" key={id}>
       <Card.Body>
@@ -8,7 +8,9 @@ export default function CardList({ id, title, body }) {
         <Card.Text>{body}</Card.Text>
         <div className="d-flex justify-content-center gap-3">
           <Button variant="warning">Edit</Button>
-          <Button variant="danger">Delete</Button>
+          <Button id={id} variant="danger" onClick={onDeleteClick}>
+            Delete
+          </Button>
         </div>
       </Card.Body>
     </Card>

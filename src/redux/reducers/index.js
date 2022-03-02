@@ -1,4 +1,8 @@
-import { GET_DATA_SUCCESS, POST_DATA_SUCCESS } from '../actions';
+import {
+  DELETE_DATA_SUCCESS,
+  GET_DATA_SUCCESS,
+  POST_DATA_SUCCESS,
+} from '../actions';
 
 const initialState = {
   data: [],
@@ -12,6 +16,10 @@ export default function reducers(state = initialState, action) {
 
     case POST_DATA_SUCCESS:
       initialState.data.unshift(action.data);
+      return { data: initialState.data };
+
+    case DELETE_DATA_SUCCESS:
+      initialState.data = initialState.data.filter((x) => x.id !== action.data);
       return { data: initialState.data };
 
     default:
