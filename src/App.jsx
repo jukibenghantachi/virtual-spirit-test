@@ -48,6 +48,7 @@ export default function App() {
         {state.data.length >= 0
           ? state.data.map((items) => (
               <CardList
+                key={items.id}
                 userId={items.userId}
                 id={items.id}
                 title={items.title}
