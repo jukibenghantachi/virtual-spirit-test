@@ -44,7 +44,7 @@ function deleted(id) {
 }
 
 function* requestData() {
-  for (let id = 1; id <= 5; id++) {
+  for (let id = 1; id <= 100; id++) {
     const data = yield call(request, id);
     yield put({ type: GET_DATA_SUCCESS, data });
   }
