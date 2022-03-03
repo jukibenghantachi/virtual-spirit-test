@@ -1,5 +1,6 @@
 import {
   DELETE_DATA_SUCCESS,
+  EDIT_DATA_SUCCESS,
   GET_DATA_SUCCESS,
   POST_DATA_SUCCESS,
 } from '../actions';
@@ -16,6 +17,14 @@ export default function reducers(state = initialState, action) {
 
     case POST_DATA_SUCCESS:
       initialState.data.unshift(action.data);
+      return { data: initialState.data };
+
+    case EDIT_DATA_SUCCESS:
+      initialState.data.map((items, index) => {
+        if (items.id === action.data.id) {
+          initialState.data[index] = action.data;
+        }
+      });
       return { data: initialState.data };
 
     case DELETE_DATA_SUCCESS:

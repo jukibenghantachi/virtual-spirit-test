@@ -35,8 +35,6 @@ export default function App() {
     dispatch(getData());
   }, [dispatch]);
 
-  console.log(state);
-
   return (
     <div>
       <CardPost
